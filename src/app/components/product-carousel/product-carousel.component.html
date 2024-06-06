@@ -1,0 +1,38 @@
+<p-carousel [value]="product"
+            [numVisible]="1"
+            [numScroll]="1"
+            [circular]="true"
+            autoplayInterval="3000">
+  <ng-template let-product
+               pTemplate="item">
+      <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 shadow-2"
+           (click)="showProduct(product)">
+        <div class="mb-3 shadow-4">
+          <img [src]="urlLocalImg + product.imagen"
+               [alt]="product.nombre"
+               class="w-6 shadow-2 cursor-pointer" />
+        </div>
+        <div>
+          <h4 class="mb-1 cursor-pointer">
+            {{ product.nombre }}
+          </h4>
+          <h3 class="text-green-700 mt-0 mb-3 cursor-pointer">
+            {{ '$' + product.precio }}
+          </h3>
+        </div>
+      </div>
+  </ng-template>
+</p-carousel>
+
+<div *ngIf="productSelect">
+  <product-modal [visible]="visible"
+                   (modalClosed)="closeModal()"
+                   [nombre]="productSelect.nombre"
+                   [imagen]="productSelect.imagen"
+                   [categoria]="productSelect.categoria.nombre"
+                   [descripcion]="productSelect.descripcion"
+                   [precio]="productSelect.precio"
+                   [stock]="productSelect.stock"
+                   [id]="productSelect.id">
+    </product-modal>
+</div>

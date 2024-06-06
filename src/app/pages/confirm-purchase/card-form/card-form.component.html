@@ -1,0 +1,79 @@
+<h2>
+   Agregar Tarjeta de Credito o Debito
+</h2>
+<div class="card">
+   <div class="surface-border border-1 p-4 border-round shadow-7">
+      <div class="card flex flex-column justify-content-center align-items-center">
+         <div class="flex justify-content-start text-gray-400 m-2 w-full">
+            <label for="cardNumber">
+               <h2>
+                  Datos de pago
+               </h2>
+            </label>
+         </div>
+         <div class="grid w-full">
+            <div class="col-12 flex flex-column justify-content-start text-gray-400 m-2">
+               <label for="cardNumber">
+                  Número de Tarjeta
+               </label>
+               <br>
+               <input type="text" 
+                      name="" 
+                      id=""
+                      maxlength="1"
+                      placeholder="xxxx-xxxx-xxxx-xxxx">
+            </div>
+            <div class="col-12 flex flex-column justify-content-start text-gray-400 m-2">
+               <label for="cardNumber">
+                  Nombre del titular
+               </label>
+               <br>
+               <input type="text" 
+                      name="" 
+                      id=""
+                      placeholder="Nombre del titular">
+            </div>
+         </div>
+         <div class="grid w-full">
+            <div class="col-6">
+               <div class="flex flex-column justify-content-start text-gray-400 m-2 w-full">
+                  <label for="cardNumber">
+                     Fecha de Expiración
+                  </label>
+                  <br>
+                  <input type="text"
+                           id="expiryDate"
+                           formControlName="expiryDate"
+                           placeholder="MM/AA"
+                           class="input"
+                           expiryDateFormatter
+                           maxlength="5"
+                        />
+               </div>
+            </div>
+            <div class="col-6">
+               <div class="flex flex-column justify-content-start text-gray-400 m-2 w-full">
+                  <label for="cardNumber">
+                     CVC
+                  </label>
+                  <br>
+                  <input type="text" 
+                         name="" 
+                         id=""
+                         maxlength="3">
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="flex justify-content-end gap-3">
+         <button class="flex justify-content-center p-button bg-red-600 w-7rem"
+                 >
+            Cancelar
+         </button>
+         <button class="flex justify-content-center p-button bg-green-600 w-7rem"
+                 >
+            Guardar
+         </button>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,93 @@
+<p-sidebar [(visible)]="sidebarVisible"
+           position="right"
+           tooltipPosition="bottom">
+  <ng-template pTemplate="header">
+    <strong>
+      Perfil de usuario
+      <i class="pi pi-user mx-3">
+      </i>
+    </strong>
+  </ng-template>
+  <!-- ! -->
+  <ng-template pTemplate="content">
+    <div *ngIf="authService.isLoggedIn$ | async; else show">
+      <div class="marginSlider">
+        <div class="flex flex-column">
+          <div class="flex align-items-center justify-content-center h-4rem ">
+            <access-button [label]="labelIngresar"
+                           (click)="showDialog()">
+            </access-button>
+          </div>
+          <div class="flex align-items-center justify-content-center h-4rem font-bold border-round ">
+            <h3>
+              Ó
+            </h3>
+          </div>
+          <div class="flex align-items-center justify-content-center h-4rem font-bold border-round ">
+            <access-button [label]="labelCreate"
+                           routerLink="user-form"
+                           (click)="hideSlidbar()">
+            </access-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #show>
+      <div *ngIf="user">
+        <p-divider></p-divider>
+        <strong>Nombre: {{user.nombre}}</strong>
+        <p-divider></p-divider>
+        <strong>Apellidos: {{user.apellidoPaterno}} {{user.apellidoMaterno}}</strong>
+        <p-divider></p-divider>
+        <strong>Correo: {{user.email}}</strong>
+        <p-divider></p-divider>
+      </div>
+    </ng-template>
+  </ng-template>
+<!-- ! -->
+  <ng-template pTemplate="footer">
+    <div class="flex align-items-end justify-content-evenly">
+      <div>
+        <p-button icon="pi pi-iconName" 
+                  label="Cerrar sesión"
+                  (click)="logout()">
+        </p-button>
+      </div>
+      <div>
+        <p-inputSwitch [(ngModel)]="checked"
+                       class="m-2"
+                       pTooltip="{{ themeNameButton }}"
+                       (click)="onThemeChange(checked ? 'light' : 'dark')">
+        </p-inputSwitch>
+          <i *ngIf="checked!; else onActivate"
+             class="pi pi-sun"
+             style="font-size: 1.5rem">
+          </i>
+        <ng-template #onActivate>
+          <i class="pi pi-moon"
+             style="font-size: 1.5rem">
+          </i>
+        </ng-template>
+      </div>
+    </div>
+  </ng-template>
+</p-sidebar>
+<p-button (click)="sidebarVisible = true"
+          class="m-3"
+          pTooltip="Usuario"
+          tooltipPosition="bottom">
+  <i class="pi pi-user m-1">
+
+  </i>
+</p-button>
+
+<p-dialog [(visible)]="visibleLogin"
+          [modal]="true"
+          [draggable]="false"
+          [resizable]="false"
+          [closable]="false">
+  <ng-template pTemplate="headless">
+    <user-login>
+    </user-login>    
+  </ng-template>
+</p-dialog>

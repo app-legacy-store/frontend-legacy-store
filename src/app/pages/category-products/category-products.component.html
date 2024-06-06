@@ -1,0 +1,47 @@
+<p-toast position="top-center">
+</p-toast>
+<app-banner [categoryProduct]= "categoryProducts" 
+            [categoryName]= "categoryProductName">
+</app-banner>
+
+<section class="my-3" *ngIf="categoryProducts">
+   <div class="flex flex-wrap justify-content-center">
+      <div class="grid flex justify-content-center align-content-center" style="width: 80%">
+         <div class="col-12 md:col-4"
+              *ngFor="let item of categoryProducts[0].productos"
+              (click)="showProduct(item)">
+            <p-card [style]="{ width: '100%' }">
+               <ng-template pTemplate="header">
+                   <img alt="Card" 
+                        class="border-round"
+                        [src]="urlApiImg + item.imagen"
+                        [style]="{ height: '300px' }" />
+               </ng-template>
+               <ng-template pTemplate="content">
+                   <div>
+                     <h3 class="m-0">
+                       {{item.nombre}} 
+                     </h3>
+                     <p> Stock disponible: {{item.stock}} </p>
+                     <p class="text-green-700">$ {{item.precio}} </p>
+                   </div>
+               </ng-template>
+           </p-card>
+         </div>
+      </div>
+
+      <div *ngIf="productSelect">
+         <product-modal [visible]="visible"
+                        (modalClosed)="closeModal()"
+                        [nombre]="nombreProducto"
+                        [imagen]="imagenProduct"
+                        [descripcion]="descripcionProduct"
+                        [precio]="precioProduct"
+                        [stock]="stockProduct"
+                        [id]="idProducto">
+         </product-modal>
+      </div>
+
+
+   </div>
+</section>

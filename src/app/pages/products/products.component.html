@@ -1,0 +1,56 @@
+<p-toast></p-toast>
+
+<separator [title]="titleProduct">
+</separator>
+<div class="grid">
+  <div class="col-12 md:col-3">
+    <div class="flex justify-content-center align-content-center">
+      <category-panel>
+      </category-panel>
+    </div>
+  </div>
+  <div class="col-12 md:col-9">
+    <div *ngIf="categorySelectId">
+      <div class="grid">
+        <div *ngFor="let product of categorySelectId.productos">
+          <div class="col-12 md:col-6">
+            <div class="col-3 flex align-items-center border-1 surface-border border-round m-3 shadow-7"     
+                  style="width: 400px; height: 120px;"
+                  (click)="showModal(product)">
+              <div class="col-4">
+                <img [src]="urlLocalImg + product.imagen"
+                      alt="{{product.imagen}}"
+                      class="w-full shadow-2 bradius-top-5 cursor-pointer border-round"
+                      style="height: 100px;">
+              </div> 
+              <div class="col-8 inline-block">
+                <h3 class="mt-0 mb-1 text-base cursor-pointer ng-star-inserted">
+                  {{ product.nombre }}
+                </h3>
+                <h3 class="mt-0 mb-2 cursor-pointer font-medium text-green-800 ng-star-inserted">
+                  $ {{ product.precio }}
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="productSelect">
+          <product-modal [visible]="visible"
+                          (modalClosed)="closeModal()"
+                          [nombre]="nombreSelect"
+                          [imagen]="imagenSelect"
+                          [categoria]="tipoCategoria"
+                          [descripcion]="descripcionSelect"
+                          [precio]="precioSelect"
+                          [stock]="stockSelect"
+                          [id]="idSelect">
+          </product-modal>
+        </div>  
+      </div>    
+    </div>
+  </div>
+  <product-card>
+  </product-card>
+</div>
+<p-scrollTop>
+</p-scrollTop>

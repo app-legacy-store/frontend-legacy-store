@@ -1,0 +1,183 @@
+<div *ngIf="userActive; else cart">
+  <div class="flex justify-content-center align-items-center">
+    <user-login>
+    </user-login>
+  </div>
+</div>
+
+<ng-template #cart>
+  <div class="card">
+    <p-tabMenu [model]="items"
+               (onTabChange)="selectItem($event)"
+               [activeItem]="activeItem"
+               (activeItemChange)="pedido($event)">
+    </p-tabMenu>
+    
+    <div *ngIf="selectedItemPedido === 'pedido-pendiente'; else showFinish">
+      <div class="grid flex justify-content-center align-content-center">
+        <div class="col-12 md:col-7 flex"
+        style="height: auto;">
+          <div *ngFor="let pedido of productosCarritoPendiente">
+            <div *ngFor="let producto of pedido.pedidoProductos">
+              <div class="grid justify-content-center surface-border border-round m-4 shadow-7 border-1">
+                <div class="col-3 flex align-items-center">
+                  <img [src]="'http://localhost:3000/uploads/'+producto.producto.imagen" 
+                        alt="imagen"
+                        class="border-round-2xl w-8 h-auto"
+                    >
+                </div>
+                <div class="col-6 md:col-4 align-content-center justify-content-center">
+                  <div class="flex justify-content-center">
+                    <h3 class="font-medium">
+                      {{ producto.producto.nombre }}
+                    </h3>
+                  </div>
+                  <div class="flex justify-content-center">
+                    <div>
+                      <button class="mx-1 p-button-text font-medium text-red-500"
+                              pButton
+                              (click)="eliminarProducto(producto)">
+                        Eliminar
+                      </button>
+                    </div>
+                    <div>
+                      <button class="mx-1 p-button-text font-medium"
+                              pButton
+                              (click)="comprarProducto(producto.id)"
+                              >
+                        Comprar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 md:col-5 flex justify-content-around align-items-center ">
+                  <div class="flex justify-content-center align-items-center">
+                    <div>
+                      <button (click)="restarProducto(pedido.id, producto.id, producto.producto.id)"
+                              class="p-button-outlined p-button-danger m-1"
+                              pButton
+                              icon="pi pi-minus-circle">
+                      </button>
+                    </div>
+                    <div>
+                      <h4 class="border-1 surface-border border-round px-3 py-2 font-medium m-1">
+                        {{ producto.cantidad }}
+                      </h4>
+                    </div>
+                    <div>
+                      <button (click)="sumarProducto(pedido.id, producto.id, producto.producto.id)"
+                              class="p-button-outlined p-button-success m-1"
+                              pButton
+                              icon="pi pi-plus-circle">
+                      </button>
+                    </div>
+                  </div>
+                  <div class="flex justify-content-center align-content-center">
+                    <h3 class="font-medium m-2 text-green-600">
+                      $ {{ producto.subTotal }}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- * Segundo card -->
+        <div class="col-12 md:col-4 flex-column align-items-center border-1 surface-border border-round m-4 shadow-7 h-15rem">
+          <div class="my-3" 
+               *ngIf="datoPedido">
+            <div class="flex justify-content-between mx-5">
+              <div>
+                Productos:
+              </div>
+              <div>
+                ({{ datoPedido.cantTotalProductos }}) productos
+              </div>
+            </div>
+            <br>
+            <div class="flex justify-content-between mx-5">
+              <div>
+                Envío:
+              </div>
+              <div class="text-green-800">
+                Gratis
+              </div>
+            </div>
+            <br>
+            <div class="flex justify-content-between mx-5 mx-3">
+              <div>
+                Total:
+              </div>
+              <div>
+                $ {{ datoPedido.totalPedido }}
+              </div>
+            </div>
+            <div class="flex justify-content-center align-items-center m-3">
+              <button class="flex justify-content-center align-content-center bg-blue-500 w-full"
+                      pButton
+                      (click)="comprarProducto(datoPedido.id)">
+                Continuar compra
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>    
+    </div>
+    <ng-template #showFinish>
+      <div class="grid flex justify-content-center align-content-center">
+        <div style="height: auto;">
+          <div *ngFor="let pedido of productosCarritoPendiente">
+            <div *ngFor="let producto of pedido.pedidoProductos">
+              <div class="flex-column justify-content-center surface-border border-round m-4 shadow-7 border-1 w-70rem">
+                <div class="col-12 surface-border border-round border-bottom-1 w-full">
+                  Fecha de la finalidad:
+                </div>
+                <div class="grid">
+                  <div class="flex justify-content-center align-content-center">
+                    <div class="col-3 flex justify-content-center center align-items-center w-15rem">
+                      <img [src]="'http://localhost:3000/uploads/'+producto.producto.imagen" 
+                           alt="imagen"
+                           class="border-round-2xl w-8rem h-8rem"
+                      >
+                    </div>
+                    <div class="col-6 w-25rem">
+                      <div class="grid">
+                        <div class="col-12">
+                          <h2 class="font-medium text-blue-800 m-0">
+                            {{ producto.estadoPedidoProducto }}
+                          </h2>
+                        </div>
+                        <div class="col-12">
+                          <h4 class="font-medium text-gray-400 m-0">
+                            {{ producto.producto.nombre }}
+                          </h4>
+                        </div>
+                        <div class="col-12">
+                          <h4 class="font-medium text-green-600 m-0">
+                            cantidad comprada: {{ producto.cantidad }}
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="col-12">
+                        <button class="p-button">Comprar de nuevo</button>
+                      </div>
+                      <div class="col-12">
+                        <h3 class="font-medium m-2 text-green-600">
+                          $ {{ producto.subTotal }}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</ng-template>

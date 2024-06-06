@@ -1,0 +1,23 @@
+<nav>
+  <p-menubar [model]="nav">
+    <ng-template pTemplate="start">
+      <img src="/assets/img/logo-vegetta.avif" 
+           height="55" 
+           class="mr-2" 
+           style="border-radius: 20px" />
+    </ng-template>
+    <ng-template pTemplate="end"
+                 class="flex justify-content-center align-items-center">
+      <p-button routerLink="shopping-cart" 
+                class="m-3"
+                pTooltip="Carrito" 
+                tooltipPosition="bottom">
+        <i class="pi pi-shopping-cart m-1">
+          
+        </i>
+      </p-button>
+      <user-profile-sidebar>
+      </user-profile-sidebar>
+    </ng-template>
+  </p-menubar>
+</nav>

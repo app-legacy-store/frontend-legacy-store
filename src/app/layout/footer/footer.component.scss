@@ -1,0 +1,16 @@
+a {
+   color: #ffffff;
+   text-decoration: none;
+   &:hover {
+      text-decoration: underline;
+      color: #11b40f;
+   }
+}
+
+div {
+   margin: 0px;
+}
+
+h3{
+   margin: 0px;
+}

@@ -1,0 +1,58 @@
+<!-- <blue-button (click)="showDialog('bottom-right')"
+             class="chat-button"
+             [label]="labelMessage">
+</blue-button> -->
+<div *ngIf="visibleBubble"
+      class="flex align-items-center justify-content-center wave-text bg-blue-500 text-black-alpha-90 w-18rem h-3rem border-round chat-bubble fadein animation-duration-1000 cursor-pointer">
+  <!-- <p (click)="showDialog('bottom-right')">
+  </p> -->
+  <p class="letter">
+    Hola,
+  </p>
+  <p class="letter px-1">
+    ¿En  
+  </p>
+  <p class="letter">
+    qué
+  </p>
+  <p class="letter px-1">
+    puedo
+  </p>
+  <p class="letter">
+    ayudarte?
+  </p>
+  <p class="flex justify-content-center align-items-center border-circle w-2rem h-2rem bg-red-100 chat-bubble-close fadein animation-duration-1000 cursor-pointer"
+     (click)="hideBubble()">
+    x
+  </p>
+</div>
+<img *ngIf="!visible"
+     src="/assets/img/file.png"
+     class="chat-button h-7rem fadein animation-duration-1000 cursor-pointer heartbeat-animation"
+     alt="logo-bot-chat"
+     (click)="showDialog('bottom-right')">
+
+<div *ngIf="visible">
+  <img src="/assets/img/file.png"
+       class="bot-in-chat h-8rem fadein animation-duration- cursor-pointer heartbeat-animation"
+       alt="logo-bot-chat">
+     <div *ngIf="visibleBubble"
+          (click)="hideBubble()"
+          class="flex align-items-center justify-content-center bg-blue-500 text-black-alpha-90 w-13rem h-3rem border-round bot-in-chat-bubble fadein animation-duration-1000 cursor-pointer heartbeat-animation">
+        <p>Pregunta lo que quieras!</p>
+      </div>
+    <div class="chat-button-close">
+        <button (click)="hideDialog()" 
+                class="p-button bg-red-600">
+                X
+        </button>
+    </div>
+    <div class="chat">
+      <iframe
+        allow="microphone;"
+        width="350"
+        height="510"
+        src="https://console.dialogflow.com/api-client/demo/embedded/c0ecf6b0-0fc4-4455-9dbf-680b9d075a8c">
+      </iframe>
+    </div>
+</div>

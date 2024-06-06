@@ -1,0 +1,155 @@
+<separator [title]="titleForm">
+</separator>
+<div class="flex justify-content-center align-content-center">
+  <div class="size-card-error m-2 px-2 border-round">
+    <div *ngIf="nombre.invalid && (nombre.dirty || nombre.rouched)">
+      <span *ngIf="nombre.errors.minlength || nombre.errors.maxlength">Se requiere un nombre con una longitud entre 3 y 20 caracteres.</span>
+      <span *ngIf="nombre.errors.required">Es obligatorio el nombre.</span>
+    </div>
+    <div *ngIf="apellidoPaterno.invalid && (apellidoPaterno.dirty || apellidoPaterno.rouched)">
+      <span *ngIf="apellidoPaterno.errors.minlength || apellidoPaterno.errors.maxlength">Se requiere un apellido paterno con una longitud entre 3 y 20 caracteres.</span>
+      <span *ngIf="apellidoPaterno.errors.required">Es obligatorio el apellido paterno.</span>
+    </div>
+    <div *ngIf="apellidoMaterno.invalid && (apellidoMaterno.dirty || apellidoMaterno.rouched)">
+      <span *ngIf="apellidoMaterno.errors.minlength || apellidoMaterno.errors.maxlength">Se requiere un apellido materno con una longitud entre 3 y 20 caracteres.</span>
+      <span *ngIf="apellidoMaterno.errors.required">Es obligatorio el apellido materno.</span>
+    </div>
+    <div *ngIf="email.invalid && (email.dirty || email.rouched)">
+      <span *ngIf="email.errors.minlength || email.errors.maxlength">Se requiere un email con una longitud entre 10 y 25 caracteres.</span>
+      <span *ngIf="email.errors.required">Es obligatorio el email.</span>
+    </div>
+    <div *ngIf="password.invalid && (password.dirty || password.rouched)">
+      <span *ngIf="password.errors.minlength || password.errors.maxlength">Se requiere una contraseña con una longitud mayor de 8 caracteres.</span>
+      <span *ngIf="password.errors.required">Es obligatorio la contraseña.</span>
+    </div>
+  </div>
+</div>
+
+<div class="flex align-content-center justify-content-center">
+  <div class="card surface-border border-1 p-4 border-round shadow-7 m-2 p-5 border-round bg-gray-200">
+    <form ngForm class="grid">
+      <div class="field col-12">
+        <label for="nombre" class="text-gray-800 text-lg">
+          Nombre.
+        </label>
+        <input type="text"
+                id="nombre"
+                [(ngModel)]="user.nombre"
+                [ngModelOptions]="{standalone: true}"
+                required
+                nombre="nombre"
+                placeholder="Ingresar nombre"
+                minlength="3"
+                maxlength="30"
+                #nombre="ngModel"
+                class="text-base text-color p-2 border-1 surface-border border-round appearance-none outline-none focus:border-secondary w-full bg-white texto-black"/>
+      </div>
+      <div class="field col-12 md:col-6">
+        <label for="apellidoPaterno" class="text-gray-800 text-lg">
+          Apellido paterno.
+        </label> 
+        <input type="text"
+                id="apellidoPaterno"
+                [(ngModel)]="user.apellidoPaterno"
+                [ngModelOptions]="{standalone: true}"
+                required
+                nombre="apellidoPaterno"
+                minlength="3"
+                maxlength="30"
+                #apellidoPaterno="ngModel"
+                class="text-base text-color p-2 border-1 surface-border border-round appearance-none outline-none focus:border-secondary w-full bg-white texto-black" />
+      </div>
+      <div class="field col-12 md:col-6">
+        <label for="apellidoMaterno" class="text-gray-800 text-lg">
+          Apellido Materno.
+        </label>
+        <input  type="text"
+                id="apellidoMaterno"
+                [(ngModel)]="user.apellidoMaterno"
+                [ngModelOptions]="{standalone: true}"
+                required
+                nombre="apellidoMaterno"
+                minlength="3"
+                maxlength="30"
+                #apellidoMaterno="ngModel"
+                class="text-base text-color p-2 border-1 surface-border border-round appearance-none outline-none focus:border-secondary w-full bg-white texto-black" />
+      </div>
+      <div class="field col-12 md:col-6">
+        <label for="email" class="text-gray-800 text-lg">
+          Correo electronico.
+        </label>
+        <input type="email"
+                id="email"
+                [(ngModel)]="user.email"
+                [ngModelOptions]="{standalone: true}"
+                required
+                minlength="10"
+                maxlength="50"
+                #email="ngModel"
+                class="text-base text-color p-2 border-1 surface-border border-round appearance-none outline-none focus:border-secondary w-full bg-white texto-black" />
+      </div>
+      <div class="field col-12 md:col-6 align-content-center p-0">
+        <!-- <label for="password" class="text-gray-800 text-lg">
+          Ingrese un password.
+        </label>
+        <input type="password"
+                id="password"
+                [(ngModel)]="user.password"
+                [ngModelOptions]="{standalone: true}"
+                required
+                name="password" 
+                minlength="8"
+                #password="ngModel"
+                class="text-base text-color p-2 border-1 surface-border border-round appearance-none outline-none focus:border-secondary w-full bg-white texto-black" />
+        <div *ngIf="form.get('password').errors?.['minlength'] && form.get('password').touched">
+          La contraseña debe tener al menos 8 caracteres.
+        </div> -->
+         <label for="password" 
+                class="text-gray-800 text-lg">
+          Ingrese un password.
+        </label>
+        <br>
+        <p-password [(ngModel)]="user.password"
+                    id="password" 
+                    [toggleMask]="true"
+                    #password="ngModel"
+                    name="password">
+        </p-password>
+        <div *ngIf="form.get('password').errors?.['minlength'] && form.get('password').touched">
+          La contraseña debe tener al menos 8 caracteres.
+        </div>
+      </div>
+      <div>
+        <div class="field col-12 flex align-items-center">
+          <label for="terminos" class="text-gray-800 text-xl">
+            Aceptar terminos y condiciones.
+          </label>
+          <p-checkbox class="m-2"
+                      [binary]="true" 
+                      inputId="binary"
+                      id="terminos"
+                      name="terminos"
+                      [(ngModel)]="user.terminos">
+          </p-checkbox>
+        </div>
+      </div>
+    </form>
+
+    <div class="flex justify-content-end flex-wrap">
+      <access-button [label]="labelAcept"
+                      (click)="create($event)">
+      </access-button>
+      <deny-button [label]="labelCancel"
+                   (click)="cancelar($event)">
+      </deny-button>
+    </div>
+  </div>  
+  <p-toast position="top-center" 
+           [showTransformOptions]="'translateY(100%)'" 
+           [showTransitionOptions]="'600ms'" 
+           [hideTransitionOptions]="'600ms'" 
+           [showTransformOptions]="'translateX(100%)'">
+  </p-toast>
+  <p-confirmDialog>
+  </p-confirmDialog>
+</div>

@@ -1,0 +1,75 @@
+
+<div *ngIf="itemId">
+  <div [ngSwitch]="itemId">
+    <div *ngSwitchCase="'1'">
+
+      <div class="card">
+        <p-table [value]="products" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>Prueba 1</td>
+                    <td>aaaaa</td>
+                    <td>aaaaa</td>
+                    <td>aaaaaa</td>
+                </tr>
+            </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'2'">
+      <div class="card">
+        <p-table [value]="products" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>Prueba 1</td>
+                    <td>aaaaa</td>
+                    <td>aaaaa</td>
+                    <td>aaaaaa</td>
+                </tr>
+            </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'3'">
+      <div class="card">
+        <p-table [value]="products" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>Prueba 1</td>
+                    <td>aaaaa</td>
+                    <td>aaaaa</td>
+                    <td>aaaaaa</td>
+                </tr>
+            </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+  </div>
+</div>

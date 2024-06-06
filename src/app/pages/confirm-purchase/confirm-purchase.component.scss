@@ -1,0 +1,21 @@
+input {
+   width: 100%;
+   padding: 10px;
+   box-sizing: border-box;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   position: relative;
+}
+
+input::placeholder {
+   color: transparent;
+}
+
+input:not(:placeholder-shown)::before {
+   content: attr(placeholder);
+   color: #aaa;
+   position: absolute;
+   left: 10px;
+   top: 10px;
+   pointer-events: none;
+}

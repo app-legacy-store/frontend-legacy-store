@@ -1,0 +1,116 @@
+.chat-button{
+    position: fixed;
+    right: 20px; 
+    bottom: 20px;
+}
+
+iframe {
+    border-radius: 10px;
+}
+
+.chat {
+    position: fixed; 
+    z-index: 1000;
+    top: 120px; 
+    left: 990px;
+    &-button-close {
+        z-index: 1001; 
+        position: fixed; 
+        top: 145px; 
+        left: 1270px;
+    }
+}
+
+.chat-bubble {
+    position: fixed; 
+    z-index: 1000;
+    bottom: 130px; 
+    right: 30px;
+    &-close {
+        z-index: 1001; 
+        position: fixed; 
+        bottom: 145px; 
+        right: 20px;
+    }
+}
+
+.bot-in-chat{
+    position: fixed;
+    z-index: 1005;
+    bottom: 445px;
+    right: 255px;
+    &-bubble {
+        z-index: 1006;
+        position: fixed;
+        top: 70px;
+        right: 75px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .chat {
+        position: fixed; 
+        top: 400px; 
+        left: 100px;
+        &-button-close {
+            z-index: 1001; 
+            position: fixed; 
+            top: 415px; 
+            left: 390px;
+        }
+    }
+}
+
+  .heartbeat-animation {
+    animation: heartbeat-adios 6s infinite, giro 6s infinite alternate;
+}
+  
+
+  @keyframes heartbeat-adios {
+    0%, 100% {
+      transform: scale(1);
+    }
+    14%, 28% {
+      transform: scale(1.1);
+    }
+    42%, 70% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes giro {
+    0% {
+      transform: rotate(-5deg);
+    }
+    100% {
+      transform: rotate(5deg);
+    }
+  }
+
+  
+  .letter {
+    display: inline-block;
+    animation: wave 1.5s infinite;
+  }
+  
+  .letter:nth-child(1) { animation-delay: 0s; }
+  .letter:nth-child(2) { animation-delay: 0.1s; }
+  .letter:nth-child(3) { animation-delay: 0.2s; }
+  .letter:nth-child(4) { animation-delay: 0.3s; }
+  .letter:nth-child(5) { animation-delay: 0.4s; }
+  .letter:nth-child(6) { animation-delay: 0.5s; }
+  .letter:nth-child(7) { animation-delay: 0.6s; }
+  .letter:nth-child(8) { animation-delay: 0.7s; }
+  .letter:nth-child(9) { animation-delay: 0.8s; }
+  .letter:nth-child(10) { animation-delay: 0.9s; }
+  .letter:nth-child(11) { animation-delay: 1s; }
+  .letter:nth-child(12) { animation-delay: 1.1s; }
+  
+  @keyframes wave {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }

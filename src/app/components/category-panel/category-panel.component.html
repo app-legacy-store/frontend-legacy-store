@@ -1,0 +1,47 @@
+<div class="py-3">
+  <div class="col-12">
+    <div class="card flex justify-content-center">
+      <select (change)="onSelectCategory($event.target.value)"
+              class="w-full h-3rem">
+        <option>Categoria</option>
+        <option *ngFor="let category of category"
+                [value]="category.id">
+                {{category.nombre}}
+        </option>
+      </select>
+    </div>
+    <!-- <p-dropdown [options]="category"
+                [(ngModel)]="selectedCategory"
+                optionLabel="nombre"
+                [filter]="true"
+                filterBy="id"
+                [showClear]="true"
+                placeholder="Buscar por categoria"
+                class="w-full">
+      <ng-template pTemplate="selectedItem"
+                   let-category>
+          <div class="flex align-items-center gap-2 w-full">
+            <div>
+              {{ category.nombre }}
+            </div>
+          </div>
+      </ng-template>
+      <ng-template let-category
+                   pTemplate="item">
+        <div class="flex align-items-center gap-2">
+          <div (click)="onSelectCategory(category.id)">
+            {{ category.nombre }}
+          </div>
+        </div>
+      </ng-template>
+    </p-dropdown> -->
+  </div>
+  <!-- <div class="col-12">
+    <iframe src="https://giphy.com/embed/Dg4TxjYikCpiGd7tYs" 
+            width="300" 
+            height="300" 
+            frameBorder="0" 
+            class="giphy-embed">
+    </iframe>
+  </div> -->
+</div>

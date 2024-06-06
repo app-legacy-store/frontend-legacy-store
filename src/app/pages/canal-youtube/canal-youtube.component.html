@@ -1,0 +1,53 @@
+<div class="flex w-full mb-5 border">
+   <img src="/assets/img/banner/banner-canal-vegetta.jpg" 
+        alt="imagen-canal"
+        class="w-full h-auto">
+</div>
+<div class="bg-black-alpha-50 p-2 m-2 border-1 border-round">
+   <h2>Planeta vegetta</h2>
+   <div class="grid">
+      <div *ngFor="let video of videos" class="col-12 md:col-3">
+         <div class="border-1 bg-gray-700 border-round">
+            <iframe class="w-full" 
+            height="300" 
+            [src]="getSafeUrl(video.snippet.resourceId.videoId)" 
+            frameborder="0" 
+            allowfullscreen>
+         </iframe>
+         <h3>{{ video.snippet.title }}</h3>
+         </div>
+       </div>
+   </div>
+   <div class="flex justify-content-center align-content-center py-5">
+      <p-button>
+         <a href="https://www.youtube.com/user/vegetta777" target="_blank" rel="noopener noreferrer">
+            Mostar más videos
+         </a>
+     </p-button>
+   </div>
+</div>
+
+<div class="bg-black-alpha-50 p-2 m-2 border-1 border-round">
+   <h2>Wigetta</h2>
+   <div class="grid">
+      <div *ngFor="let video of videos2" class="col-12 md:col-3">
+         <div class="border-1 bg-gray-700 border-round">
+            <iframe class="w-full" 
+            height="300" 
+            [src]="getSafeUrl(video.snippet.resourceId.videoId)" 
+            frameborder="0" 
+            allowfullscreen>
+         </iframe>
+         <h3>{{ video.snippet.title }}</h3>
+         <!-- <p>{{ video.snippet.description > 10 ? video.snippet.description.substring(0, 10) + '...' : video.snippet.description }}</p> -->
+         </div>
+       </div>
+   </div>
+   <div class="flex justify-content-center align-content-center py-5">
+      <p-button>
+         <a href="https://www.youtube.com/user/vegetta777" target="_blank" rel="noopener noreferrer">
+            Mostar más videos
+         </a>
+     </p-button>
+   </div>
+</div>

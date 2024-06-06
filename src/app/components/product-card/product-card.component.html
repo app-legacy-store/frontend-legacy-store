@@ -1,0 +1,35 @@
+<div class="grid flex justify-content-center align-content-center">
+  <div *ngFor="let i of product">
+    <div class="flex align-items-center border-1 surface-border border-round m-3 shadow-7"
+         (click)="showProduct(i)"
+         style="width: 500px; height: 220px;">
+      <div class="col-4">
+        <img [src]="urlLocalImg + i.imagen"
+             alt="{{i.imagen}}"
+             class="w-full shadow-2 bradius-top-5 cursor-pointer border-round"
+             style="height: 200px;">
+      </div> 
+      <div class="col-8 inline-block">
+        <h3 class="mt-0 mb-1 text-base text-2xl cursor-pointer ng-star-inserted">
+          {{ i.nombre }}
+        </h3>
+        <h3 class="mt-0 mb-2 cursor-pointer text-2xl font-medium text-green-800 ng-star-inserted">
+          $ {{ i.precio }}
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="productSelect">
+    <product-modal [visible]="visible"
+                   (modalClosed)="closeModal()"
+                   [nombre]="productSelect.nombre"
+                   [imagen]="productSelect.imagen"
+                   [categoria]="productSelect.categoria.nombre"
+                   [descripcion]="productSelect.descripcion"
+                   [precio]="productSelect.precio"
+                   [stock]="productSelect.stock"
+                   [id]="productSelect.id">
+    </product-modal>
+  </div>
+</div>

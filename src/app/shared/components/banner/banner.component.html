@@ -1,0 +1,17 @@
+<section *ngIf="categoryProduct">
+   <div class="p-relative p-m-2 image-container">
+      <div class="image-overlay"></div>
+         <img [src]="urlApiImg + categoryProduct[0].imagenBanner" 
+            alt=""
+            class="border-round image"
+            style="width: 100%;">
+         <p-breadcrumb class="max-w-full" 
+                     [model]="items"
+         />
+      </div>
+      <div class="title">
+         <h1 class="border-bottom-1 m-0">
+            {{categoryProduct[0].nombre}}
+         </h1>
+      </div>
+</section>

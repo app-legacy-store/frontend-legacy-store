@@ -1,0 +1,41 @@
+<p-toast position="top-center" 
+         [showTransformOptions]="'translateY(100%)'" 
+         [showTransitionOptions]="'600ms'" 
+         [hideTransitionOptions]="'600ms'" 
+         [showTransformOptions]="'translateX(100%)'">
+</p-toast>
+<promotions-banner>
+</promotions-banner>
+<separator [title]="titleHome">
+</separator>
+
+<div class="grid">
+  <div class="md:col-5 col-12">
+    <product-carousel>
+    </product-carousel>
+  </div>
+  <div class="md:col-7 col-12">
+    <div class="flex justify-content-center align-content-center">
+      <product-card [cantProduct]="4">
+      </product-card>
+    </div>
+    <div class="flex justify-content-center">
+      <i class="pi pi-angle-down fadeout animation-duration-1000 animation-iteration-infinite"
+         style="font-size: 2rem;">
+      </i>
+    </div>
+    <div class="flex justify-content-center align-content-center my-4">
+      <access-button [label]="seeMore"
+                     routerLink="user-form"
+                     routerLink="/products">
+      </access-button>
+    </div>
+  </div>
+  <!-- <div class="flex justify-content-center" style="width: 100%;">
+    <div class="Flex justify-content-center" style="width: 70%;">
+      <app-product-section>
+      </app-product-section>
+    </div>
+  </div> -->
+
+</div>

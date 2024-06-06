@@ -1,0 +1,13 @@
+.size-card{
+  max-width: 1000px;
+  background: linear-gradient(90deg, rgba(255,53,43,1) 13%, rgba(252,179,69,1) 82%);
+}
+
+.size-card-error{
+  width: 700px;
+  background-image: radial-gradient(circle at left top, var(--red-500), var(--red-800))
+}
+
+.texto-black{
+  color: black !important;
+}

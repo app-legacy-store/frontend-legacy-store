@@ -1,0 +1,10 @@
+.button-effect {
+  background-color: rgb(144, 136, 228);
+  transition: color 0.1s ease;
+}
+
+.button-effect:hover {
+  color: white;
+  border-color: white;
+  background-color: rgba(29, 170, 16, 0);
+}

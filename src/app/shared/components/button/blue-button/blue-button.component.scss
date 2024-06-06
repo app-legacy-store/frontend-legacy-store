@@ -1,0 +1,17 @@
+.button-effect {
+    height: 3.5rem;
+    width: 3.5rem;
+    background-color: #1a4acf;
+    transition: 0.2s ease;
+    border-color: black;
+  
+    &:hover {
+      box-shadow: 0 0 20px;
+      scale: 1.1;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      transition-duration: 1s;
+      background-image: radial-gradient(circle at left top, var(--blue-800), var(--blue-500))
+    }
+  }
+  

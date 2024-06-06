@@ -1,0 +1,24 @@
+<!-- <p-carousel [value]="banners"
+            [numVisible]="1"
+            [numScroll]="1"
+            [circular]="false"
+            autoplayInterval="5000">
+  <ng-template let-banner 
+               pTemplate="item">
+    <div class="surface-border border-round text-center shadow-2">
+      <div class="shadow-4">
+        <img [src]="urlImage + banner.imagen"
+             [alt]="banner.nombre"
+             class="w-full h-auto shadow-2 border-round cursor-pointer" />
+      </div>      
+    </div>
+  </ng-template>
+</p-carousel> -->
+
+<div class="w-full bg-bluegray-200"
+     *ngFor="let banner of banners">
+  <img [src]="urlImage + banner.imagen"
+       [alt]="banner.nombre"
+       class="w-full h-auto shadow-2 border-round cursor-pointer" 
+   />
+</div>

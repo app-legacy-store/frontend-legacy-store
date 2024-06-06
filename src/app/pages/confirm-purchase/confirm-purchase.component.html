@@ -1,0 +1,204 @@
+<p-toast></p-toast>
+
+<div>
+   <h1>Confirmar Compra</h1>
+ </div>
+ <div class="flex justify-content-center">
+   <div class="" style="width: 60%;">
+     <div class="grid">
+       <div class="col-12 flex flex-column gap-3">
+         <p-timeline [value]="events" layout="horizontal" class="mx-3">
+           <ng-template pTemplate="content" let-event>
+             {{ event }}
+           </ng-template>
+         </p-timeline>
+      </div>
+       <!-- Dirección de entrega -->
+      <div style="width: 100%;" class="flex flex-wrap justify-content-center">
+         <div style="width: 60%;">
+            <div>
+               <div class="col-12" *ngIf="currentStep === 0">
+                  <h2>
+                     Dirección de Entrega
+                  </h2>
+                  <div class="card">
+                     <div *ngIf="flagAddress; else noDataAddress" 
+                          class="surface-border border-1 p-4 border-round shadow-7">
+                        <div class="flex flex-column justify-content-center align-items-center surface-border">
+                           <div class="flex justify-content-center surface-border ">
+                              <div class="flex flex-column gap-3">
+                                 <div *ngFor="let address of dataAddress" class="field-checkbox">
+                                    <div class="w-full">
+                                       <div class=" flex align-items-center border-1 border-solid border-round surface-100 px-5 py-3">
+                                          <p-radioButton [inputId]="address.id" 
+                                                         name="address" 
+                                                         [value]="address"
+                                                         [(ngModel)]="selectedaddress"
+                                                         (ngModelChange)="onAddressChange($event)">
+
+                                          </p-radioButton>
+                                             <label [for]="address.id" class="ml-2">{{ address.calle }} - {{address.numeroCasa}} - {{address.ciudad}}
+                                                                                    <br>{{address.colonia}}, {{address.codigoPostal}}, {{address.estado}}
+                                             </label>
+                                       </div>
+                                    </div>
+                                </div>
+                              </div>
+                           </div>
+                           <div class="text-gray-400 m-2 w-full">
+                              <a routerLink="address-form">
+                                 Agregar direccion ó editar
+                              </a>
+                           </div>
+                        </div>
+                        <div class="flex justify-content-end">
+                           <button (click)="confirmarDireccion()"
+                                    class="flex justify-content-center p-button bg-green-600 w-7rem">
+                                    Confirmar
+                           </button>
+                        </div>
+                     </div>
+                     <ng-template #noDataAddress>
+                        <div class="surface-border border-1 p-4 border-round shadow-7">
+                           <div class="flex justify-content-center w-full">
+                              <h3>
+                                 No hay direcciones
+                              </h3>
+                           </div>
+                           <div class="flex justify-content-start">
+                              <a routerLink="address-form">
+                                 Agregar dirección
+                              </a>
+                           </div>
+                        </div>
+                     </ng-template>
+                  </div> 
+               </div>
+               <!-- Método de pago -->
+               <div class="col-12" *ngIf="currentStep === 1">
+                  <h2>
+                     Tarjeta de Credito o Debito
+                  </h2>
+                  <div class="card">
+                     <div *ngIf="flagTarjeta; else noDataTarjeta" 
+                          class="surface-border border-1 p-4 border-round shadow-7">
+                        <div class="flex flex-column justify-content-center align-items-center surface-border">
+                           <div class="flex justify-content-center surface-border ">
+                              <div class="flex flex-column gap-3">
+                                 <div *ngFor="let tarjeta of dataTarjeta" class="field-checkbox">
+                                    <div class="w-full">
+                                       <div class=" flex align-items-center border-1 border-solid border-round surface-100 px-5 py-3">
+                                          <p-radioButton [inputId]="tarjeta.id" 
+                                                         name="tarjeta" 
+                                                         [value]="tarjeta"
+                                                         [(ngModel)]="selectedTarjeta"
+                                                         (ngModelChange)="onTarjetaChange($event)">
+
+                                          </p-radioButton>
+                                             <label [for]="tarjeta.id" class="ml-2 w-full">{{ tarjeta.nombreTarjeta }}
+                                                                                    <br>**** **** **** {{tarjeta.numeroTarjeta.slice(-4)}}
+                                             </label>
+                                       </div>
+                                    </div>
+                                </div>
+                              </div>
+                           </div>
+                           <div class="text-gray-400 m-2 w-full">
+                              <a routerLink="address-form">
+                                 Agregar tarjeta ó editar
+                              </a>
+                           </div>
+                        </div>
+                        <div class="flex justify-content-end">
+                           <button (click)="confirmarTarjeta()"
+                                    class="flex justify-content-center p-button bg-green-600 w-7rem">
+                                    Confirmar
+                           </button>
+                        </div>
+                     </div>
+                     <ng-template #noDataTarjeta>
+                        <div class="surface-border border-1 p-4 border-round shadow-7">
+                           <div class="flex justify-content-center w-full">
+                              <h3>
+                                 No hay Trajetas
+                              </h3>
+                           </div>
+                           <div class="flex justify-content-start">
+                              <a routerLink="address-form">
+                                 Agregar tarjeta
+                              </a>
+                           </div>
+                        </div>
+                     </ng-template>
+                  </div>
+               </div>
+               <!-- Confirmar compra -->
+               <div class="col-12" *ngIf="currentStep === 2">
+                  <h2>Confirmar Compra</h2>
+                  <div class="card">
+                     <div class="surface-border border-1 p-4 border-round shadow-7">
+                        <div class="flex flex-column justify-content-center align-items-center">
+                           <div class="flex justify-content-center">
+                              <div class="flex flex-column gap-3">
+                                 <div class="w-full">
+                                    <h3>
+                                       Direccion seleccionado: 
+                                    </h3>
+                                    <div class=" flex align-items-center border-1 border-solid border-round surface-100 px-5">
+                                       <p>{{ selectedaddress.calle }} - {{selectedaddress.numeroCasa}} - {{selectedaddress.ciudad}}
+                                          <br>{{selectedaddress.colonia}}, {{selectedaddress.codigoPostal}}, {{selectedaddress.estado}}
+                                       </p>
+                                    </div>
+                                 </div>
+                                 <div class="w-full">
+                                    <h3>
+                                       Tarjeta seleccionado: 
+                                    </h3>
+                                    <div class=" flex align-items-center border-1 border-solid border-round surface-100 px-5 py-3">
+                                       <p>**** **** **** {{selectedTarjeta.numeroTarjeta.slice(-4)}}
+                                       </p>
+                                    </div>
+                                 </div>
+                                 <div class="">
+                                    <h3>
+                                       Productos
+                                    </h3>
+                                    <div *ngIf="dataPedidoSelected">
+                                       <div *ngFor="let item of dataPedidoSelected.pedidoProductos">
+                                          <div class="grid">
+                                             <div class="flex border-1 border-round my-2">
+                                                <div class="col-3">
+                                                   <img [src]="urlBaseImg + item.producto.imagen"
+                                                        class="w-full h-20 border-round" 
+                                                        alt="imgaen {{item.producto.imagen}}">
+                                                </div>
+                                                <div class="col-9">
+                                                   <h3 class="m-0 text-gray-300">{{ item.producto.nombre }}</h3>
+                                                   <p class="m-0 text-gray-300">Cantidad: {{ item.cantidad }}</p>
+                                                   <p class="text-green-400 m-0">Precio: ${{ item.subTotal }}</p>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div>
+                                          Precio Total: ${{ dataPedidoSelected.totalPedido }}
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                        </div>
+                        <div class="flex align-items-end justify-content-end">
+                           <button (click)="confirmarCompra()"
+                                    class="flex justify-content-center p-button bg-green-600 w-7rem mx-2">
+                                    Confirmar compra
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+ 
